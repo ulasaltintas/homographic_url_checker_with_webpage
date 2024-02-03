@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homograph URL Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .homograph {
+            background-color: #FFD700;
+        }
+
+        .not-homograph {
+            background-color: #90EE90;
+        }
+    </style>
+</head>
+<body>
+    <h1>Homograph URL Checker</h1>
+    <form method="post">
+        <label for="url">Enter URL:</label>
+        <input type="text" name="url" required>
+        <button type="submit">Check Homograph</button>
+    </form>
+
+    {% if result is not none %}
+    <div class="result {% if result %}homograph{% else %}not-homograph{% endif %}">
+        {% if result %}
+        <p>This URL may be a homograph attack.</p>
+        {% else %}
+        <p>The URL is not a homograph attack.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+</body>
+</html>
